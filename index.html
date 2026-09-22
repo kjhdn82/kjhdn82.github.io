@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="김재현 | 17년 경력 시니어 웹 개발자 포트폴리오">
+<style>*{box-sizing:border-box}img{max-width:100%}html{color-scheme:light dark}</style>
+<title>김재현 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#f6f4ef; --surface:#ffffff; --surface-2:#f1eee7; --line:#e4e0d7;
+    --text:#1a1d24; --muted:#666c78; --faint:#9aa0ab;
+    --accent:#b06716; --accent-ink:#ffffff; --accent-soft:rgba(176,103,22,.10);
+    --shadow:0 1px 2px rgba(24,20,12,.05),0 8px 28px rgba(24,20,12,.06);
+    --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'IBM Plex Sans KR','Apple SD Gothic Neo',system-ui,sans-serif;
+    --maxw:960px;
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --bg:#13151b; --surface:#1b1e26; --surface-2:#20242e; --line:#2c313d;
+      --text:#eceef2; --muted:#969ca8; --faint:#6b7280;
+      --accent:#e0913f; --accent-ink:#1a1206; --accent-soft:rgba(224,145,63,.12);
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 34px rgba(0,0,0,.34);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#13151b; --surface:#1b1e26; --surface-2:#20242e; --line:#2c313d;
+    --text:#eceef2; --muted:#969ca8; --faint:#6b7280;
+    --accent:#e0913f; --accent-ink:#1a1206; --accent-soft:rgba(224,145,63,.12);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 34px rgba(0,0,0,.34);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+    font-weight:400;line-height:1.72;-webkit-font-smoothing:antialiased;
+    letter-spacing:-.003em;font-size:15px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:22px}
+  a{color:inherit}
+  .mono{font-family:var(--mono)}
+  .eyebrow{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:9px}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--accent);opacity:.7}
+  h1,h2,h3{font-weight:600;letter-spacing:-.02em;text-wrap:balance;margin:0}
+
+  /* header */
+  header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+    background:color-mix(in srgb,var(--bg) 86%,transparent);
+    backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .mark{font-family:var(--mono);font-weight:600;font-size:14px;letter-spacing:.02em}
+  .mark b{color:var(--accent)}
+  nav{display:flex;gap:22px;align-items:center}
+  nav a{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-decoration:none;
+    letter-spacing:.02em;transition:color .15s}
+  nav a:hover{color:var(--text)}
+  .navlinks{display:flex;gap:22px}
+  .tgl{background:var(--surface);border:1px solid var(--line);color:var(--muted);
+    width:34px;height:34px;border-radius:9px;cursor:pointer;display:grid;place-items:center;
+    font-size:15px;transition:.15s}
+  .tgl:hover{color:var(--text);border-color:var(--accent)}
+
+  /* hero */
+  .hero{padding-block:76px 40px;border-bottom:1px solid var(--line)}
+  .hero h1{font-size:clamp(30px,5.4vw,52px);line-height:1.16;margin:20px 0 0;max-width:16ch}
+  .hero h1 .hl{color:var(--accent)}
+  .hero .lead{margin:22px 0 0;font-size:clamp(15px,1.7vw,17px);color:var(--muted);
+    max-width:60ch;line-height:1.78}
+  .who{margin-top:14px;font-family:var(--mono);font-size:13px;color:var(--faint);letter-spacing:.02em}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;
+    background:var(--surface);border:1px solid var(--line);font-family:var(--mono);
+    font-size:12.5px;color:var(--text);text-decoration:none;transition:.15s}
+  a.chip:hover{border-color:var(--accent);color:var(--accent)}
+  .chip .k{color:var(--faint)}
+
+  /* stat readout */
+  .readout{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+  .readout .cell{padding:26px 22px;border-left:1px solid var(--line)}
+  .readout .cell:first-child{border-left:0}
+  .readout .num{font-family:var(--mono);font-weight:600;font-size:clamp(24px,3.4vw,32px);
+    letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .readout .num .u{color:var(--accent);font-size:.62em;margin-left:2px}
+  .readout .lab{font-family:var(--mono);font-size:11.5px;color:var(--muted);
+    letter-spacing:.08em;text-transform:uppercase;margin-top:6px}
+
+  section{padding-block:60px;border-bottom:1px solid var(--line)}
+  .sec-head{margin-bottom:34px}
+  .sec-head h2{font-size:clamp(22px,3vw,30px);margin-top:14px}
+  .sec-head p{color:var(--muted);margin:10px 0 0;max-width:62ch}
+
+  /* about */
+  .about p{max-width:66ch;margin:0 0 18px;color:var(--text);opacity:.94}
+  .about p.big{font-size:clamp(17px,2.1vw,20px);line-height:1.7;opacity:1;color:var(--text)}
+  .about .pull{border-left:2px solid var(--accent);padding:2px 0 2px 20px;margin:26px 0;
+    color:var(--text);font-weight:500;max-width:60ch}
+
+  /* skills */
+  .skillgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+  .skillcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .skillcard h3{font-size:14px;font-family:var(--mono);font-weight:600;letter-spacing:.02em;
+    color:var(--accent);display:flex;align-items:center;gap:9px}
+  .skillcard h3 .n{color:var(--faint);font-size:12px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+  .tag{font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:7px;
+    background:var(--surface-2);color:var(--text);border:1px solid var(--line)}
+  .tag.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+
+  /* projects */
+  .projects{display:flex;flex-direction:column;gap:16px}
+  .proj{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:26px;box-shadow:var(--shadow)}
+  .proj .top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .proj .idx{font-family:var(--mono);color:var(--accent);font-size:13px;font-weight:600}
+  .proj h3{font-size:19px}
+  .proj .sub{color:var(--muted);margin:8px 0 0;max-width:70ch}
+  .proj .orgs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 16px}
+  .org{font-family:var(--mono);font-size:12px;color:var(--muted);padding:5px 11px;
+    border:1px solid var(--line);border-radius:999px}
+  .org b{color:var(--text);font-weight:600}
+  .proj ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .proj li{position:relative;padding-left:18px;color:var(--text);opacity:.92;font-size:14.5px}
+  .proj li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;
+    border-radius:2px;background:var(--accent)}
+  .proj .stk{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px}
+
+  /* timeline */
+  .tl{position:relative;margin-left:6px;padding-left:26px}
+  .tl::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .job{position:relative;padding:0 0 26px}
+  .job:last-child{padding-bottom:0}
+  .job::before{content:"";position:absolute;left:-31px;top:5px;width:11px;height:11px;
+    border-radius:50%;background:var(--bg);border:2px solid var(--line)}
+  .job.now::before{border-color:var(--accent);background:var(--accent);
+    box-shadow:0 0 0 4px var(--accent-soft)}
+  .job .when{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.02em;
+    font-variant-numeric:tabular-nums}
+  .job .role{margin-top:3px;display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+  .job .co{font-weight:600;font-size:16px}
+  .job .pos{color:var(--muted);font-size:13.5px}
+  .job .desc{color:var(--muted);font-size:13.5px;margin-top:3px}
+  .badge-now{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--accent-ink);
+    background:var(--accent);padding:2px 8px;border-radius:999px;text-transform:uppercase;font-weight:600}
+
+  /* facts */
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .fact{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .fact .fl{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent)}
+  .fact .fv{margin-top:8px;font-weight:600;font-size:15.5px}
+  .fact .fm{color:var(--muted);font-size:13px;margin-top:3px}
+
+  /* footer / contact */
+  footer{padding-block:64px 46px}
+  .contact h2{font-size:clamp(24px,3.4vw,34px)}
+  .contact p{color:var(--muted);max-width:52ch;margin:14px 0 26px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border-radius:11px;
+    font-family:var(--mono);font-size:13.5px;text-decoration:none;transition:.16s;font-weight:500}
+  .btn.primary{background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent)}
+  .btn.primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .foot-note{margin-top:46px;padding-top:22px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+    font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+
+  @media (max-width:720px){
+    .navlinks{display:none}
+    .readout{grid-template-columns:repeat(2,1fr)}
+    .readout .cell:nth-child(3){border-left:0}
+    .readout .cell:nth-child(n+3){border-top:1px solid var(--line)}
+    .hero{padding-block:52px 34px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <div class="mark">KIM<b>.</b>JAEHYUN</div>
+    <nav>
+      <div class="navlinks">
+        <a href="#about">소개</a>
+        <a href="#skills">역량</a>
+        <a href="#work">경력</a>
+        <a href="#contact">연락처</a>
+      </div>
+      <button class="tgl" id="tgl" aria-label="테마 전환">◑</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="border-bottom:none">
+    <div class="wrap">
+      <span class="eyebrow">Senior Web Developer · 17Y+</span>
+      <h1>AI 생태계와 함께<br>진화하는 <span class="hl">시니어 웹 개발자</span></h1>
+      <p class="lead">17년간 PHP 생태계에서 공공·기업·언론·커머스까지 수많은 대고객 서비스를 구축·운영해 온 시니어 개발자입니다. 탄탄한 기본기와 디버깅 내공 위에 최신 AI 에이전트를 결합해, 리스크는 줄이고 생산성은 끌어올립니다.</p>
+      <p class="who mono">김재현 · Kim Jaehyun — 백엔드 · 웹 · 앱 개발</p>
+      <div class="chips">
+        <a class="chip" href="mailto:kjhdn82@gmail.com"><span class="k">✉</span> kjhdn82@gmail.com</a>
+        <a class="chip" href="tel:01022255864"><span class="k">☎</span> 010-2225-5864</a>
+        <a class="chip" href="https://github.com/kjhdn82" target="_blank" rel="noopener"><span class="k">⌘</span> github.com/kjhdn82</a>
+        <span class="chip"><span class="k">◎</span> 경기 용인시 처인구</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="readout wrap" style="padding-inline:0;max-width:var(--maxw);margin:0 auto">
+    <div class="cell"><div class="num">17<span class="u">년+</span></div><div class="lab">Web Dev 경력</div></div>
+    <div class="cell"><div class="num">10<span class="u">개사</span></div><div class="lab">구축·운영 이력</div></div>
+    <div class="cell"><div class="num">18<span class="u">+</span></div><div class="lab">기술 스택</div></div>
+    <div class="cell"><div class="num">PHP<span class="u">→AI</span></div><div class="lab">기술 스펙트럼</div></div>
+  </div>
+
+  <section id="about" class="about">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">About</span><h2>AI가 채우지 못하는 마지막 2%,<br>‘라스트 마일’의 가치</h2></div>
+      <p class="big">이제 누구나 프롬프트 몇 줄로 코딩 AI를 쓰는 시대입니다. 역설적으로, AI가 그럴싸한 코드를 빠르게 뱉어내도 복잡한 비즈니스 도메인을 이해하고 시스템 전체의 안정성과 아키텍처를 책임지는 것은 결국 사람 개발자의 몫입니다.</p>
+      <div class="pull">강산이 한 번 반 바뀌는 시간 동안 쌓은 기본기와 디버깅 내공으로, AI가 제안하는 코드의 맥락과 허점을 정확히 짚어냅니다.</div>
+      <p>저는 Cursor, Claude Code, Antigravity 같은 최신 AI 에이전트를 단순 보조 도구가 아니라 <b>‘지치지 않는 주니어 개발자’</b>처럼 적극적으로 리드합니다. AI의 ‘빠른 초안 작성’과 시니어의 ‘정밀한 검증 능력’을 결합해, 주력 분야인 PHP 아키텍처를 더 견고히 다지는 것은 물론 Python 기반 데이터 처리와 모바일 앱 개발까지 기술 스펙트럼을 확장했습니다.</p>
+      <p>발전과 화합을 중시합니다. 사회는 혼자 사는 것이 아니라는 믿음으로 팀과 잘 어울려 프로젝트를 완성해 왔고, 도구의 변화에 휩쓸리지 않고 도구를 지배하여 비즈니스의 실질적인 생산성 혁신을 리드하는 개발자로 계속 성장하고 있습니다.</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Capabilities</span><h2>핵심 역량 &amp; 기술 스택</h2>
+        <p>17년간 실무에서 다뤄 온 기술을 영역별로 정리했습니다. 다양한 레거시 환경(ASP·JSP·Oracle·MSSQL)의 운영 경험과 최신 스택을 함께 갖추고 있습니다.</p></div>
+      <div class="skillgrid">
+        <div class="skillcard"><h3>백엔드 · 언어 <span class="n mono">/ core</span></h3>
+          <div class="tags"><span class="tag on">PHP</span><span class="tag on">Node.js</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">JSP</span><span class="tag">CodeIgniter</span></div></div>
+        <div class="skillcard"><h3>프론트엔드 <span class="n mono">/ ui</span></h3>
+          <div class="tags"><span class="tag on">JavaScript</span><span class="tag">TypeScript</span><span class="tag">ReactJS</span><span class="tag">Vue.js</span></div></div>
+        <div class="skillcard"><h3>데이터베이스 <span class="n mono">/ data</span></h3>
+          <div class="tags"><span class="tag on">MySQL</span><span class="tag">MariaDB</span><span class="tag">MS-SQL</span><span class="tag">Oracle</span><span class="tag">Cubrid</span><span class="tag">RDBMS</span></div></div>
+        <div class="skillcard"><h3>인프라 · 협업 <span class="n mono">/ ops</span></h3>
+          <div class="tags"><span class="tag">Apache</span><span class="tag">Nginx</span><span class="tag">Git</span><span class="tag">웹접근성</span></div></div>
+        <div class="skillcard"><h3>AI 협업 <span class="n mono">/ new</span></h3>
+          <div class="tags"><span class="tag on">Cursor</span><span class="tag on">Claude Code</span><span class="tag">Antigravity</span><span class="tag">Prompt Engineering</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Selected Work</span><h2>대표 경력 기술</h2>
+        <p>도메인별로 묶은 주요 수행 이력입니다. PHP·MySQL 구축·운영을 축으로, 공공·언론·커머스 등 폭넓은 비즈니스 영역을 경험했습니다.</p></div>
+      <div class="projects">
+
+        <article class="proj">
+          <div class="top"><span class="idx mono">01</span><h3>PHP · Node.js 웹/앱 서비스 구축·운영</h3></div>
+          <p class="sub">PHP·MySQL 기반 구축과 상시 유지보수를 중심으로, 최근에는 Node.js·Python·Spring Boot까지 확장한 서비스 개발 체계.</p>
+          <div class="orgs"><span class="org"><b>디토나인</b> · 2024.11~</span><span class="org"><b>디오스</b> · 2022~2024</span><span class="org"><b>나인웍스</b> · 2021~2022</span></div>
+          <ul>
+            <li>운세·타로·심리·소비·로또 관련 앱과 웹 서비스를 Node.js·PHP·MySQL·Java·Spring Boot·Python 기반으로 구축·유지보수</li>
+            <li>PHP·MySQL 기반 비즈니스 사이트 구축 및 운영 이슈 상시 관리, 자사·외부 연계 사이트 유지보수 체계 운영</li>
+          </ul>
+          <div class="stk"><span class="tag">Node.js</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Python</span></div>
+        </article>
+
+        <article class="proj">
+          <div class="top"><span class="idx mono">02</span><h3>공공·기업 웹서비스 구축 &amp; 웹접근성</h3></div>
+          <p class="sub">공공기관·기업 사이트를 중심으로 한 구축·리뉴얼·웹접근성 대응 실무. 레거시(ASP·MSSQL)와 신규 환경이 혼재한 서비스 운영.</p>
+          <div class="orgs"><span class="org"><b>이지팜</b> · 2014~2020</span><span class="org"><b>미래정보통신</b> · 2009~2010</span></div>
+          <ul>
+            <li>농식품·지자체·기관 사이트를 PHP·MySQL로 구축·유지보수, ASP·MSSQL 혼재 환경의 서비스 운영 담당</li>
+            <li>용인시청·구청·도서관·협회·문화시설·지원센터 등 다수 공공 사이트의 웹접근성 작업·리뉴얼·오픈·유지보수 수행</li>
+          </ul>
+          <div class="stk"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">ASP</span><span class="tag">JSP</span><span class="tag">MS-SQL</span><span class="tag">Oracle</span></div>
+        </article>
+
+        <article class="proj">
+          <div class="top"><span class="idx mono">03</span><h3>뉴스 · 커뮤니티 · 특화 서비스 운영</h3></div>
+          <p class="sub">언론·커뮤니티·특화 도메인 사이트의 오픈과 유지보수 경험. 모바일 웹 대응 포함.</p>
+          <div class="orgs"><span class="org"><b>DBK네트웍스</b> · 2011~2012</span><span class="org"><b>투플레이인터렉티브</b></span><span class="org"><b>지음</b></span></div>
+          <ul>
+            <li>소비자가만드는신문·충북일보 등 언론 서비스(신문 2.0/3.0·모바일 웹)의 오픈·유지보수 운영</li>
+            <li>게임·커뮤니티·제휴 사이트 및 프로젝트 사이트의 초기 오픈과 유지보수 수행</li>
+          </ul>
+          <div class="stk"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Cubrid</span><span class="tag">모바일 웹</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Career Timeline</span><h2>경력 연혁 <span class="mono" style="font-size:.6em;color:var(--faint);font-weight:400">총 17년 5개월</span></h2></div>
+      <div class="tl">
+        <div class="job now">
+          <div class="when">2024.11 — 재직 중</div>
+          <div class="role"><span class="co">디토나인</span><span class="pos">UX Part 매니저</span><span class="badge-now">Current</span></div>
+          <div class="desc">웹 개발 및 유지보수 · 앱/웹 서비스 개발</div>
+        </div>
+        <div class="job">
+          <div class="when">2022.04 — 2024.06</div>
+          <div class="role"><span class="co">디오스 (DIOS)</span><span class="pos">개발팀 부장</span></div>
+          <div class="desc">웹 개발 및 관리</div>
+        </div>
+        <div class="job">
+          <div class="when">2021.11 — 2022.04</div>
+          <div class="role"><span class="co">나인웍스</span><span class="pos">운영팀 본부장</span></div>
+          <div class="desc">웹 개발 및 관리</div>
+        </div>
+        <div class="job">
+          <div class="when">2020.06 — 2021.10</div>
+          <div class="role"><span class="co">비엠아이코리아</span><span class="pos">운영팀 팀장</span></div>
+          <div class="desc">웹 개발 및 관리</div>
+        </div>
+        <div class="job">
+          <div class="when">2014.04 — 2020.05</div>
+          <div class="role"><span class="co">이지팜</span><span class="pos">스마트유통팀 대리</span></div>
+          <div class="desc">농식품·지자체·기관 웹서비스 구축·유지보수</div>
+        </div>
+        <div class="job">
+          <div class="when">2013.01 — 2014.03</div>
+          <div class="role"><span class="co">gateforex</span><span class="pos">개발팀 과장 · 팀장</span></div>
+          <div class="desc">웹 개발</div>
+        </div>
+        <div class="job">
+          <div class="when">2012.03 — 2012.12</div>
+          <div class="role"><span class="co">지음</span><span class="pos">개발팀 대리</span></div>
+          <div class="desc">웹 개발 · 사이트 오픈</div>
+        </div>
+        <div class="job">
+          <div class="when">2011.02 — 2012.03</div>
+          <div class="role"><span class="co">DBK네트웍스</span><span class="pos">미디어사업팀 주임/계장</span></div>
+          <div class="desc">언론 서비스 오픈·유지보수</div>
+        </div>
+        <div class="job">
+          <div class="when">2010.11 — 2011.02</div>
+          <div class="role"><span class="co">투플레이인터렉티브</span><span class="pos">개발팀</span></div>
+          <div class="desc">게임·커뮤니티 웹 개발</div>
+        </div>
+        <div class="job">
+          <div class="when">2009.01 — 2010.11</div>
+          <div class="role"><span class="co">미래정보통신</span><span class="pos">개발팀 대리</span></div>
+          <div class="desc">공공기관 웹서비스·웹접근성</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:none">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Profile</span><h2>학력 · 자격 · 기타</h2></div>
+      <div class="facts">
+        <div class="fact"><div class="fl mono">Education</div><div class="fv">동우대학 인터넷정보</div><div class="fm">전문학사 졸업 · 학점 3.8 / 4.5</div></div>
+        <div class="fact"><div class="fl mono">Certificate</div><div class="fv">정보처리기능사</div><div class="fm">한국산업인력공단</div></div>
+        <div class="fact"><div class="fl mono">Military</div><div class="fv">육군 병장 만기 제대</div><div class="fm">2002.07 — 2004.08</div></div>
+        <div class="fact"><div class="fl mono">Target Role</div><div class="fv">백엔드 · 웹 · 앱 개발자</div><div class="fm">정규직 · 경기 용인 권역</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact" class="contact">
+  <div class="wrap">
+    <span class="eyebrow">Contact</span>
+    <h2>함께 성장할 팀을 찾습니다</h2>
+    <p>17년의 실무 내공과 AI 활용 능력으로, 안정적인 운영과 빠른 실행을 동시에 만들어 냅니다. 편하게 연락 주세요.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:kjhdn82@gmail.com">✉ 이메일 보내기</a>
+      <a class="btn ghost" href="https://github.com/kjhdn82" target="_blank" rel="noopener">⌘ GitHub</a>
+      <a class="btn ghost" href="tel:01022255864">☎ 010-2225-5864</a>
+    </div>
+    <div class="foot-note">
+      <span>© 2026 김재현 (Kim Jaehyun)</span>
+      <span>Senior Web Developer · Portfolio</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('tgl');
+  function cur(){
+    var a=root.getAttribute('data-theme');
+    if(a) return a;
+    return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+  }
+  try{var s=localStorage.getItem('kjh-theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
+  btn.addEventListener('click',function(){
+    var n=cur()==='dark'?'light':'dark';
+    root.setAttribute('data-theme',n);
+    try{localStorage.setItem('kjh-theme',n);}catch(e){}
+  });
+  document.querySelectorAll('nav a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
